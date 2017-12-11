@@ -46,7 +46,7 @@ ExecStartPre=/usr/bin/scl enable devtoolset-4 -- /usr/bin/mysqld_pre_systemd
 # Start main service
 ExecStart=/usr/bin/scl enable devtoolset-4 -- /usr/sbin/mysqld --daemonize --pid-file=/var/run/mysqld/mysqld.pid $MYSQLD_OPTS
 
-EnvironmentFile=/opt/rh/devtoolset-4/service-environment
+#EnvironmentFile=/opt/rh/devtoolset-4/service-environment
 # Use this to switch malloc implementation
 EnvironmentFile=-/etc/sysconfig/mysql
 

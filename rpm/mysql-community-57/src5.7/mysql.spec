@@ -106,6 +106,7 @@ Release:        1%{?commercial:.1}%{?dist}
 License:        Copyright (c) 2000, 2017, %{mysql_vendor}. All rights reserved. Under %{?license_type} license as shown in the Description field.
 Source0:        https://cdn.mysql.com/Downloads/MySQL-5.7/%{src_dir}.tar.gz
 Source1:        mysqld.service
+Source2:        mysql-systemd-start
 
 URL:            http://www.mysql.com/
 Packager:       MySQL Release Engineering <mysql-build@oss.oracle.com>
@@ -786,6 +787,7 @@ install -D -m 0755 packaging/rpm-oel/mysql.init %{buildroot}%{_sysconfdir}/init.
 
 rm -f %{buildroot}%{_unitdir}/mysqld.service
 install -D -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/mysqld.service
+install -D -m 0755 %{SOURCE1} %{buildroot}%{_bindir}/mysql-systemd-start
 
 # Add libdir to linker
 install -d -m 0755 %{buildroot}%{_sysconfdir}/ld.so.conf.d
@@ -939,6 +941,7 @@ fi
 %attr(755, root, root) %{_bindir}/zlib_decompress
 %if 0%{?systemd}
 %attr(755, root, root) %{_bindir}/mysqld_pre_systemd
+%attr(755, root, root) %{_bindir}/mysql-systemd-start
 %else
 %attr(755, root, root) %{_bindir}/mysqld_multi
 %attr(755, root, root) %{_bindir}/mysqld_safe
